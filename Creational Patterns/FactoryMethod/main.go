@@ -52,46 +52,27 @@ func newProductB() IProduct {
 
 }
 
-// Factory is an interface for creating products.
+// Factory for creating products.
 
-type IFactory interface {
-	CreateProduct() IProduct
+type Factory struct {
 }
 
-// Concrete Factory of IFactory type
-
-type FactoryA struct {
-}
-
-func (fa FactoryA) CreateProduct() IProduct {
-	return newProductA()
-}
-
-func newFactoryA() IFactory {
-	return FactoryA{}
-}
-
-// Concrete Factory of IFactory type
-
-type FactoryB struct {
-}
-
-func (fb FactoryB) CreateProduct() IProduct {
-	return newProductB()
-}
-func newFactoryB() IFactory {
-	return FactoryB{}
+func (f *Factory) CreateProduct(productType string) IProduct {
+	if productType == "product_b" {
+		return newProductB()
+	} else if productType == "product_a" {
+		return newProductA()
+	}
+	return Product{}
 }
 
 func main() {
-	fmt.Println("--------------Factory A------------------")
-	factoryA := newFactoryA()
-	productA := factoryA.CreateProduct()
+	fmt.Println("--------------Product A-----------------")
+	factory := Factory{}
+	productA := factory.CreateProduct("product_a")
 	fmt.Println("Here is ", productA.getName())
-
-	fmt.Println("--------------Factory B------------------")
-	factoryB := newFactoryB()
-	productB := factoryB.CreateProduct()
+	fmt.Println("--------------Product B------------------")
+	productB := factory.CreateProduct("product_b")
 	fmt.Println("Here is ", productB.getName())
 
 }
