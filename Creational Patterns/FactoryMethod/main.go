@@ -66,6 +66,7 @@ func (f *Factory) CreateProduct(productType string) IProduct {
 	return Product{}
 }
 
+// client
 func main() {
 	fmt.Println("--------------Product A-----------------")
 	factory := Factory{}
