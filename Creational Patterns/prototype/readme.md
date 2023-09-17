@@ -1,6 +1,5 @@
+### prototype interface
 ```go
-// prototype interface
-
 type Inode interface {
 	print(string)
 	clone() Inode
@@ -8,8 +7,9 @@ type Inode interface {
 ```
 this portion will define the behavior
 
+### Concrete prototype :: File
+
 ```go
-// Concrete prototype :: File
 
 type File struct {
 	name string
@@ -26,8 +26,8 @@ func (f *File) clone() Inode {
 
 ```
 File is concrete file of Inode type
+### Concrete prototype :: Folder
 ```go
-// Concrete prototype :: Folder
 
 type Folder struct {
 	childreen []Inode
@@ -54,8 +54,10 @@ func (f *Folder) clone() Inode {
 
 ```
 Folder is concrete file of Inode type
+
+### // client
 ```go
-// client
+
 func main() {
 	file1 := &File{name: "file1"}
 	file2 := &File{name: "file2"}
